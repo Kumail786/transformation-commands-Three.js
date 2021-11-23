@@ -70,7 +70,7 @@ scene.add(x_plane)
 const cartesianYCoordinates = [
   {
     x : 0,
-    y : 5
+    y : 6
   },
   {
     x : 0,
@@ -78,7 +78,7 @@ const cartesianYCoordinates = [
   },
   {
     x : 0,
-    y : -5
+    y : -6
   },
 ]
 const cartesian_y = new Shape()
@@ -87,62 +87,61 @@ scene.add(y_plane)
 
 const triangleCoordinates = [
   {
-    x : 0,
-    y : 0
+    x : 2,
+    y : 4
+  },
+  {
+    x : 4,
+    y : 6
   },
   {
     x : 2,
-    y : 3
+    y : 6
   },
   {
-    x : 3,
-    y : 0
-  },
-  {
-    x : 0,
-    y : 0
+    x : 2,
+    y : 4
   },
 ]
 const triangle = new Shape()
 const triangleScene = triangle.drawShape(triangleCoordinates)
 scene.add(triangleScene)
 
-// const x_reflectedPoints = triangle.reflectShape(triangleCoordinates,'x')
-// // x reflected traingle
-// const triangle_x_reflected = new Shape()
-// const triangle_x_Scene = triangle_x_reflected.drawShape(x_reflectedPoints )
-// scene.add(triangle_x_Scene)
+const getLinePoints = ()=>{
+  let points = []
+  for(let i = -1;i<10;i++){
+   let y = (1/2 * i) + 2
+   points.push({
+     x : i,
+     y
+   })
+  }
+  return points
+}
 
-// const y_reflectedPoints = triangle.reflectShape(x_reflectedPoints,'y')
-// // y reflected traingle
-// const triangle_y_reflected = new Shape()
-// const triangle_y_Scene = triangle_y_reflected.drawShape(y_reflectedPoints )
-// scene.add(triangle_y_Scene)
- 
-//  const rotatedPoints = triangle.rotateShape(triangleCoordinates,180)
-//  const triangle_rotated = new Shape()
-//  const triangle_rotated_Scene = triangle_rotated.drawShape(rotatedPoints )
-//  scene.add(triangle_rotated_Scene)
+const lineCordinates = getLinePoints()
+const line = new Shape()
+const lineScene = line.drawShape(lineCordinates)
+scene.add(lineScene)
 
-  triangleScene.geometry.applyMatrix( triangleScene.matrix );
 
-triangleScene.position.set( 50, 20, 0 );
-triangleScene.rotation.set( 0.5, 0, 0 );
-triangleScene.scale.set( 10, 10, 10 );
-triangleScene.updateMatrix();
+lineScene.geometry.translate(0,-2,0)
+lineScene.geometry.rotateZ(-26.54*Math.PI/180);
 
-triangleScene.position.set( 10, 10, 0 );
-triangleScene.rotation.set( 1, 0, 0 );
-triangleScene.scale.set( 10, 10, 10 );
-triangleScene.updateMatrix();
+triangleScene.geometry.translate(0,-2,0)
+triangleScene.geometry.rotateZ(-26.54*Math.PI/180);
 
-// triangleScene.position.x = 50
+triangleScene.geometry.scale(1,-1,1); 
 
-// triangleScene.translateX(10)
-// triangleScene.translateX(10)
+triangleScene.geometry.rotateZ(26.54*Math.PI/180);
+triangleScene.geometry.translate(0,2,0)
 
-// triangleScene.rotateX(2)
-// triangleScene.rotateX(2)
+
+lineScene.geometry.rotateZ(26.54*Math.PI/180);
+lineScene.geometry.translate(0,2,0)
+
+
+console.log(triangleScene.geometry)
   
 
 }
